@@ -37,7 +37,10 @@ function recupererID(){
 
     const cartes=document.querySelectorAll('.card')
     cartes.forEach(element => {
-        element.addEventListener('click',function(){
+        const button=document.createElement('button');
+        button.textContent='Modifier';
+        element.appendChild(button);
+        button.addEventListener('click',function(){
             const h6=element.querySelector('h6').innerHTML
             console.log(h6);
             modif.style.display = 'block'
