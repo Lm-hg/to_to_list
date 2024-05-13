@@ -33,12 +33,14 @@
         #modif{
             display: none;
         }
+
     </style>
 </head>
 <body>
     <div class="task-manager">
         <div id="modif">
-            <form action="">
+            <form id="new" action="">
+                <input type="hidden" name="id" value="" id="ai">
                 <input id="newTask" type="text" placeholder="La tache">
                 <select name="" id="newStatus">
                     <option value="en cours">en cours</option>
@@ -62,7 +64,7 @@
                 <option value="plus tard">plus tard</option>
 
             </select>
-            <button type="submit">Add Task</button>
+            <button id="ajouter" type="submit">Add Task</button>
         </form>
 
                 <!-- Les tâches seront ajoutées ici dynamiquement -->

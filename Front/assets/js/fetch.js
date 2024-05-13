@@ -72,5 +72,24 @@ async function addStatus(statusData) {
     }
 }
 
-export { register_user, addTask, addStatus, connectUser }
 
+
+async function setTask(a) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(a)
+    };
+    
+    try {
+        const response = await fetch('http://localhost:3000/set', requestOptions);
+        const data = await response.json();
+        return data; 
+    } catch (error) {
+        console.error('Erreur lors de l\'ajout de status :', error);
+    }
+}    
+
+
+
+export { register_user, addTask, addStatus, connectUser,setTask }

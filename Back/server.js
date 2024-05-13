@@ -1,6 +1,6 @@
 import express, { urlencoded } from 'express'
 import cors from 'cors'
-import { add_user, addTask, addStatus, getUsername, loginUser, getUserTask} from './model/supabase.js'
+import { add_user, addTask, addStatus, getUsername, loginUser, getUserTask, updateTask} from './model/supabase.js'
 
 const app = express()
 const port = 3000
@@ -76,8 +76,8 @@ app.post('/status', async (req, res) => {
 
 ///////////// Get Tasks
 
-app.get('/tasks/:username', async (req, res) => {
-    const username = req.params.username;
+app.get('/tasks', async (req, res) => {
+    const username = req.query.username;
     try {
       const tasks = await getUserTask(username);
       res.send(tasks);
@@ -88,7 +88,18 @@ app.get('/tasks/:username', async (req, res) => {
     }
   });
 
-
+app.post('/set', async function(req,res){
+    const id=req.body.id;
+    const task=req.body.task;
+    const status=req.body.status;
+    try {
+        const tasks = await updateTask(task,status,id);
+  
+      } catch (error) {
+        console.error('Erreur lors de la récupération des tâches :', error);
+        res.status(500).json({ error: 'Erreur lors de la récupération des tâches' });
+      }
+})
 
 app.listen(port, () => {
     console.log(`Hello I'm here ${port}`);

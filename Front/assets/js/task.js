@@ -20,6 +20,8 @@ taskForm.addEventListener('submit', async (e) => {
     }
     console.log(taskData);
     const response = await addTask(taskData);
+    window.location.href = './task.html?username=' + username;
+
 });
 
 // ///////// Status-form
